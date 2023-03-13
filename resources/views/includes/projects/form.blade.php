@@ -41,7 +41,7 @@
         <option @if(old('type_id', $project->type_id) == $type->id) selected @endif value="{{$type->id}}">{{ $type->label}}</option> 
         @endforeach
       </select>
-      @error('rype_id')
+      @error('type_id')
       <div class="invalid-feedback">
         {{ $message }}
       </div>
@@ -56,7 +56,7 @@
         placeholder="image" name="image" required value="{{ old('image', $project->image) }}">
       @error('image')
         <div class="invalid-feedback">
-          {{ $msg }}
+          {{ $message }}
         </div>
       @else
         <div class="form-text">https:sdsjdksdlfjie.jpg</div>
@@ -75,6 +75,20 @@
       <textarea name="content" id="content" cols="30"
         class="form-control @error('content') is-invalid @enderror">{{ old('content', $project->content) }}</textarea>
     </div>
+  </div>
+
+  <div class="col-12">
+    @foreach ( $technologies as $tech )
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="tech-{{$loop->iteration}}" value="{{$tech->id}}" name="technologies[]"
+       @if(in_array($tech->id,old('technologies', $project_technologies ?? []))) checked @endif>
+      <label class="form-check-label" for="tech-{{$loop->iteration}}">{{$tech->label}}</label>
+    </div>
+    @endforeach
+    @error('technologies')
+    <small class="invalid-feedback d-block">{{$message}}</small>
+    @enderror
+
   </div>
   
 <hr>

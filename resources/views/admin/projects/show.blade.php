@@ -34,6 +34,8 @@
 <div class="mt-3 d-flex gap-2">
     <h5><strong>Data:</strong>{{$project->updated_at}}</h5>
     <h5><strong>Categoria:</strong>{{$project->type?->label}}</h5>
+    <h5><strong>Tecnologie:</strong>@forelse($project->technologies as $tech) {{$tech->label}} @if(!$loop->last), @else. @endif @empty -    @endforelse</h5>
+
 
 
 </div>

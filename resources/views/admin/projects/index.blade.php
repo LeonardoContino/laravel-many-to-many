@@ -15,6 +15,7 @@
           <th scope="col">Titolo</th>
           <th scope="col">slug</th>
           <th scope="col">Tipo di progetto</th>
+          <th scope="col">Tecnologie</th>
           <th scope="col">Aggiornato il</th>
 
         </tr>
@@ -29,6 +30,14 @@
               @else
                 -
             @endif</td>
+            <td>
+              
+              @forelse ($project->technologies as $tech)
+                <span class="badge" style="background-color:{{$tech->color}}">{{$tech->label}}</span> 
+                  @empty
+                  -
+              @endforelse
+            </td>
             <td>{{$project->updated_at}}</td>
             <td>
                 <div class="d-flex align-items-center justify-content-end gap-2">
@@ -46,7 +55,7 @@
           </tr>
         @empty
             <tr>
-                <td colspan="6">non ci sono progetti</td>
+                <td colspan="7">non ci sono progetti</td>
             </tr>
         @endforelse
         
