@@ -73,7 +73,7 @@ class ProjectController extends Controller
 
         $project->technologies()->attach($data['technologies']);
 
-        return to_route('admin.projects.index', $project->id)->with('type', 'success')->with('nuovo progetto creato');
+        return to_route('admin.projects.index', $project->id)->with('type', 'success')->with('msg','nuovo progetto creato');
     }
 
     /**
